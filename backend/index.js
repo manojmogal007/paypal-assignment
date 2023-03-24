@@ -19,7 +19,7 @@ app.listen(port,async()=>{
         console.log('Server connected to database')
     }catch(err){
         console.log(err)
-        console.loh('Database connection error')
+        console.log('Database connection error')
     }
     console.log(`Server started on port ${port}`)
 })
