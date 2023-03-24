@@ -9,12 +9,11 @@ const Project = ({name,startDate,endDate,id}) => {
         console.log(id)
     }
   return (
-    <div className='project'>
-        <Link to={`/${id}`} ><p onClick={handleclick} >{name}</p></Link>
+    <Link to={`/${id}`} ><div className='project'>
+        <p onClick={handleclick} >{name}</p>
         <p>Start : {startDate}</p>
         <p>End : {endDate}</p>
-        <Button>Delete</Button>
-    </div>
+    </div></Link>
   )
 }
 

@@ -1,17 +1,17 @@
 .container{
-    border: 1px solid yellowgreen;
+    /* border: 1px solid yellowgreen; */
     display: grid;
     grid-template-columns: repeat(3,1fr);
-    gap:10px
+    gap:10px;
+    padding: 20px;
 }
 .todo{
-    border:1px solid red;
+    border:1px solid grey;
     border-radius: 6px;
     padding: 8px;
 }
-.inprogress{
-    border:1px solid red;
-}
-.done{
-    border:1px solid red;
+.tasks{
+    border: 1px solid blue;
+    border-radius: 6px;
+    margin: 4px;
 }

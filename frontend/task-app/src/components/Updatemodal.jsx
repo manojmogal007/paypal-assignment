@@ -46,7 +46,7 @@ const Updatemodal = ({gettasks,tname,tassignee,ttype,tstatus,tid,tsprint_id}) =>
     const {name,assignee,type,status}=task
     return (
         <>
-          <Button onClick={onOpen}>Update</Button>
+          <Button colorScheme='blue' h='30px' pl='20px' pr='20px' onClick={onOpen}>Update</Button>
           <Modal
             initialFocusRef={initialRef}
             finalFocusRef={finalRef}

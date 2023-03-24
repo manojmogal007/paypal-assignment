@@ -53,7 +53,7 @@ const Taskmodal = ({id,gettasks}) => {
     const {name,assignee,type}=task
     return (
         <>
-          <Button onClick={onOpen}>Create task</Button>
+          <Button colorScheme='red' onClick={onOpen}>Create task</Button>
           <Modal
             initialFocusRef={initialRef}
             finalFocusRef={finalRef}

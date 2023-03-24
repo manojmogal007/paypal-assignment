@@ -53,7 +53,7 @@ const Sprintmodal = ({getsprints}) => {
     const {name,startDate,endDate}=sprint
     return (
         <>
-          <Button onClick={onOpen}>Create sprint</Button>
+          <Button colorScheme='red' onClick={onOpen}>Create sprint</Button>
           <Modal
             initialFocusRef={initialRef}
             finalFocusRef={finalRef}

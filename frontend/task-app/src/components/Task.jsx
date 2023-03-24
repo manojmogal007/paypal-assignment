@@ -5,10 +5,14 @@ import Updatemodal from './Updatemodal'
 const Task = ({name,assignee,type,id,sprint_id,status,gettasks}) => {
   return (
     <div className='task'>
-        <p>{name}</p>
-        <p>to : {assignee}</p>
-        <p>{type}</p>
-        <Updatemodal gettasks={gettasks} tid={id} tstatus={status} tsprint_id={sprint_id} tname={name} ttype={type} tassignee={assignee} />
+        <div className='name'>
+            <p>{name}</p>
+            <p>{type}</p>
+        </div>
+        <div className='type'>
+            <p>to : {assignee}</p>
+            <Updatemodal gettasks={gettasks} tid={id} tstatus={status} tsprint_id={sprint_id} tname={name} ttype={type} tassignee={assignee} />
+        </div>
     </div>
   )
 }

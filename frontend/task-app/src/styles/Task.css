@@ -2,4 +2,9 @@
     border:1px solid grey;
     margin: 5px;
     border-radius: 5px;
+    padding: 5px;
 }
+/* .name{
+    display: flex;
+    justify-content: space-around;
+} */

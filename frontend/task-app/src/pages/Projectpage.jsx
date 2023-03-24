@@ -3,6 +3,7 @@ import Sprintmodal from '../components/Sprintmodal'
 import { useDispatch, useSelector } from 'react-redux'
 import {allsprints} from '../redux/action'
 import Project from '../components/Project'
+import '../styles/Projectpage.css'
 
 const Projectpage = () => {
     const {loading,sprints}=useSelector((store)=>store)
@@ -17,7 +18,8 @@ const Projectpage = () => {
     },[])
   return (
     <div>
-        <div>
+        <div className='nav'>
+            <h2>All sprints</h2>
             <Sprintmodal getsprints={getsprints}/>
         </div>
         <div className='projects'>
