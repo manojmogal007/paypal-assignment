@@ -1,4 +1,4 @@
-import { ERROR, GETSPRINT, LOADING, SUCCESS } from "./actiontypes"
+import { ERROR, GETSPRINT, GETTASK, LOADING, SUCCESS } from "./actiontypes"
 
 const initialstate={
     loading:false,
@@ -32,6 +32,13 @@ export const reducer=(state=initialstate,{type,payload})=>{
                 ...state,
                 loading:false,
                 sprints:payload
+            }
+        }
+        case GETTASK:{
+            return {
+                ...state,
+                loading:false,
+                tasks:payload
             }
         }
         default:{

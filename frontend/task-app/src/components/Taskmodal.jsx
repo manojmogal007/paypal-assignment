@@ -14,6 +14,8 @@ import {
     useDisclosure,
     Select
   } from '@chakra-ui/react'
+  import {addtask} from '../redux/action'
+import { useDispatch } from 'react-redux'
 
 
   const initialstate={
@@ -23,18 +25,32 @@ import {
     status:'to do',
     sprint_id:''
   }
-const Taskmodal = () => {
+const Taskmodal = ({id,gettasks}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const initialRef = React.useRef(null)
     const finalRef = React.useRef(null)
+    const [task,setTask]=React.useState(initialstate)
+    const dispatch=useDispatch()
 
     const handlechange=(e)=>{
-
+        const {name,value}=e.target
+        setTask({...task,[name]:value})
     }
 
     const handelsubmit=(e)=>{
-        
+        e.preventDefault()
+        task.sprint_id=id
+        dispatch(addtask(task))
+        .then((res)=>{
+            gettasks()
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
     }
+
+
+    const {name,assignee,type}=task
     return (
         <>
           <Button onClick={onOpen}>Create task</Button>
@@ -46,34 +62,29 @@ const Taskmodal = () => {
           >
             <ModalOverlay />
             <ModalContent>
-              <ModalHeader>Create new sprint</ModalHeader>
+              <ModalHeader>Create new task</ModalHeader>
               <ModalCloseButton />
               <ModalBody pb={6}>
               <FormControl mt={4}>
                   <FormLabel>Task</FormLabel>
-                  <Input type='text' placeholder='Task' />
+                  <Input onChange={handlechange} value={name} name='name' type='text' placeholder='Task' />
                 </FormControl>
                 <FormControl>
                   <FormLabel>Type</FormLabel>
-                    <Select placeholder='Select type'>
+                    <Select onChange={handlechange} value={type} name='type' placeholder='Select type'>
                         <option value='bug'>Bug</option>
                         <option value='feature'>Feature</option>
                         <option value='story'>Story</option>
                     </Select>
                 </FormControl>
                 <FormControl>
-                  <FormLabel>Assignee name</FormLabel>
-                  <Input ref={initialRef} placeholder='Assignee name' />
-                </FormControl>
-                
-                <FormControl mt={4}>
-                  <FormLabel>End date</FormLabel>
-                  <Input type='date' placeholder='End date' />
+                  <FormLabel >Assignee name</FormLabel>
+                  <Input onChange={handlechange} value={assignee} name='assignee' ref={initialRef} placeholder='Assignee name' />
                 </FormControl>
               </ModalBody>
     
               <ModalFooter>
-                <Button colorScheme='blue' mr={3}>
+                <Button colorScheme='blue' mr={3} onClick={handelsubmit}>
                   Save
                 </Button>
                 <Button onClick={onClose}>Cancel</Button>

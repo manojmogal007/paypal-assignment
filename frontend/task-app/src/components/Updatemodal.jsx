@@ -12,16 +12,41 @@ import {
     FormLabel,
     Input,
     useDisclosure,
+    Select
   } from '@chakra-ui/react'
+  import {updatetask} from '../redux/action'
+import { useDispatch } from 'react-redux'
+import {alltasks} from '../redux/action'
 
-const Updatemodal = () => {
+const Updatemodal = ({gettasks,tname,tassignee,ttype,tstatus,tid,tsprint_id}) => {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const initialRef = React.useRef(null)
     const finalRef = React.useRef(null)
+    const [task,setTask]=React.useState({name:tname,assignee:tassignee,type:ttype,status:tstatus,sprint_id:tsprint_id,_id:tid})
+    // console.log(task)
+    const dispatch=useDispatch()
 
+    const handlehange=(e)=>{
+        const {name,value}=e.target
+        setTask({...task,[name]:value})
+    }
+
+    const hamdlesubmit=(e)=>{
+        e.preventDefault()
+        // console.log(task)
+        dispatch(updatetask(task))
+        .then((res)=>{
+            gettasks()
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+
+    }
+    const {name,assignee,type,status}=task
     return (
         <>
-          <Button onClick={onOpen}>Create sprint</Button>
+          <Button onClick={onOpen}>Update</Button>
           <Modal
             initialFocusRef={initialRef}
             finalFocusRef={finalRef}
@@ -35,21 +60,33 @@ const Updatemodal = () => {
               <ModalBody pb={6}>
                 <FormControl>
                   <FormLabel>Name</FormLabel>
-                  <Input ref={initialRef} placeholder='Name' />
+                  <Input name='name' disabled value={name} ref={initialRef} placeholder='Name' />
                 </FormControl>
                 <FormControl mt={4}>
-                  <FormLabel>Start date</FormLabel>
-                  <Input type='date' placeholder='Start date' />
+                <FormLabel>Type</FormLabel>
+                    <Select disabled  value={type} name='type' placeholder='Select type'>
+                        <option value='bug'>Bug</option>
+                        <option value='feature'>Feature</option>
+                        <option value='story'>Story</option>
+                    </Select>
                 </FormControl>
                 <FormControl mt={4}>
-                  <FormLabel>End date</FormLabel>
-                  <Input type='date' placeholder='End date' />
+                <FormLabel>Status</FormLabel>
+                    <Select onChange={handlehange} value={status} name='status' placeholder='Select Status'>
+                        <option value='to do'>To do</option>
+                        <option value='in progress'>In progress</option>
+                        <option value='done'>Done</option>
+                    </Select>
+                </FormControl>
+                <FormControl mt={4}>
+                  <FormLabel>Assignee</FormLabel>
+                  <Input onChange={handlehange} name='assignee' type='text' value={assignee} placeholder='End date' />
                 </FormControl>
               </ModalBody>
     
               <ModalFooter>
-                <Button colorScheme='blue' mr={3}>
-                  Save
+                <Button colorScheme='blue' onClick={hamdlesubmit} mr={3}>
+                  Update
                 </Button>
                 <Button onClick={onClose}>Cancel</Button>
               </ModalFooter>

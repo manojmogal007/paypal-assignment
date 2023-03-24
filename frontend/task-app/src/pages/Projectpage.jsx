@@ -6,7 +6,7 @@ import Project from '../components/Project'
 
 const Projectpage = () => {
     const {loading,sprints}=useSelector((store)=>store)
-    console.log(sprints)
+    // console.log(sprints)
     const dispatch=useDispatch()
     const getsprints=()=>{
         dispatch(allsprints())
