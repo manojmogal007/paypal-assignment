@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams } from 'react-router-dom'
 import Task from '../components/Task'
 import Taskmodal from '../components/Taskmodal'
-import Updatemodal from '../components/Updatemodal'
 import {alltasks} from '../redux/action'
 import '../styles/Taskpage.css'
 
@@ -12,7 +11,6 @@ const Taskpage = () => {
   const {id}=useParams()
   const {tasks}=useSelector((store)=>store)
   const dispatch=useDispatch()
-  // console.log(tasks)
 
   const gettasks=()=>{
     dispatch(alltasks(id))
@@ -30,7 +28,7 @@ const Taskpage = () => {
         </div>
         <div className="container">
             <div className="todo">
-              <div className="tasks"><h4>To-do</h4></div>
+              <div className="tasks"><h4>To-do </h4></div>
               
                 {
                   tasks.map((el)=>(
@@ -39,7 +37,7 @@ const Taskpage = () => {
                 }
             </div>
             <div className="todo">
-              <div className="tasks"> <h4>In-progress</h4></div>
+              <div className="tasks"> <h4>In-progress </h4></div>
            
             {
                   tasks.map((el)=>(
@@ -48,7 +46,7 @@ const Taskpage = () => {
                 }
             </div>
             <div className="todo">
-              <div className="tasks"><h4>Done</h4></div>
+              <div className="tasks"><h4>Done </h4></div>
             
             {
                   tasks.map((el)=>(

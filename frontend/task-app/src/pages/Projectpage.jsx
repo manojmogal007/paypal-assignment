@@ -5,12 +5,19 @@ import {allsprints} from '../redux/action'
 import Project from '../components/Project'
 import '../styles/Projectpage.css'
 
+
+
 const Projectpage = () => {
     const {loading,sprints}=useSelector((store)=>store)
+    
     // console.log(sprints)
     const dispatch=useDispatch()
     const getsprints=()=>{
         dispatch(allsprints())
+    }
+    // console.log(new Date())
+    const check=()=>{
+        // if(sprints[1].)
     }
 
     React.useEffect(()=>{
