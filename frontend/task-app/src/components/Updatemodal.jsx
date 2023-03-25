@@ -15,7 +15,7 @@ import {
     Select
   } from '@chakra-ui/react'
   import {updatetask} from '../redux/action'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {alltasks} from '../redux/action'
 
 const Updatemodal = ({gettasks,tname,tassignee,ttype,tstatus,tid,tsprint_id}) => {
@@ -25,6 +25,7 @@ const Updatemodal = ({gettasks,tname,tassignee,ttype,tstatus,tid,tsprint_id}) =>
     const [task,setTask]=React.useState({name:tname,assignee:tassignee,type:ttype,status:tstatus,sprint_id:tsprint_id,_id:tid})
     // console.log(task)
     const dispatch=useDispatch()
+    const {loading}=useSelector((store)=>store)
 
     const handlehange=(e)=>{
         const {name,value}=e.target
@@ -85,7 +86,7 @@ const Updatemodal = ({gettasks,tname,tassignee,ttype,tstatus,tid,tsprint_id}) =>
               </ModalBody>
     
               <ModalFooter>
-                <Button colorScheme='blue' onClick={hamdlesubmit} mr={3}>
+                <Button isLoading={loading} loadingText='Updating task' colorScheme='blue' onClick={hamdlesubmit} mr={3}>
                   Update
                 </Button>
                 <Button onClick={onClose}>Cancel</Button>

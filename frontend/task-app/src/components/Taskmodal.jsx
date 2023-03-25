@@ -15,7 +15,7 @@ import {
     Select
   } from '@chakra-ui/react'
   import {addtask} from '../redux/action'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 
   const initialstate={
@@ -31,6 +31,7 @@ const Taskmodal = ({id,gettasks}) => {
     const finalRef = React.useRef(null)
     const [task,setTask]=React.useState(initialstate)
     const dispatch=useDispatch()
+    const {loading}=useSelector((store)=>store)
 
     const handlechange=(e)=>{
         const {name,value}=e.target
@@ -84,7 +85,7 @@ const Taskmodal = ({id,gettasks}) => {
               </ModalBody>
     
               <ModalFooter>
-                <Button colorScheme='blue' mr={3} onClick={handelsubmit}>
+                <Button isLoading={loading} loadingText='Saving task' colorScheme='blue' mr={3} onClick={handelsubmit}>
                   Save
                 </Button>
                 <Button onClick={onClose}>Cancel</Button>
